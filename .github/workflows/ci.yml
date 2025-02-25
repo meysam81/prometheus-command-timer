@@ -5,9 +5,14 @@ concurrency:
   group: ci-${{ github.ref_name }}-${{ github.event_name }}
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
+    tags:
+      - v*
 
 permissions:
   contents: read
@@ -16,6 +21,35 @@ permissions:
   security-events: write
 
 jobs:
+  build-edge:
+    if: |
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build docker
+        uses: meysam81/build-docker@main
+        with:
+          image-name: ghcr.io/meysam81/atlantis
+          image-extra-tags: |
+            ghcr.io/meysam81/atlantis:${{ github.run_id }}
+            ghcr.io/meysam81/atlantis:latest
+          kubescape: true
+          kubescape-upload-sarif: true
+
+  build-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build docker
+        uses: meysam81/build-docker@main
+        with:
+          image-name: ghcr.io/meysam81/atlantis
+          kubescape: true
+          scout-comment-pr: true
+          scout-compare: true
+          scout-cves: true
+
   release-please:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -31,3 +65,14 @@ jobs:
         uses: googleapis/release-please-action@v4
         with:
           release-type: simple
+
+  build-stable:
+    needs: release-please
+    if: needs.release-please.outputs.releases_created == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build docker
+        uses: meysam81/build-docker@main
+        with:
+          image-name: ghcr.io/meysam81/atlantis
+          image-extra-tags: ghcr.io/meysam81/atlantis:${{ needs.release-please.outputs.tag_name }}
