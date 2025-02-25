@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eux
+set -eu
 
 DEFAULT_VERSION="latest"
 DEFAULT_DIRECTORY="."
@@ -103,6 +103,8 @@ echo "Architecture: $ARCH"
 echo "Version: $VERSION"
 echo "Download URL: $DOWNLOAD_URL"
 echo "Destination directory: $DIRECTORY"
+
+DIRECTORY=${DIRECTORY%/}
 
 if ! wget -q -O "$DIRECTORY/$ASSET_NAME" "$DOWNLOAD_URL"; then
     echo "Download failed!"
