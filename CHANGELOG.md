@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.0...v1.0.1) (2025-02-25)
+
+
+### Bug Fixes
+
+* **CI:** allow write access to release assets ([901ca8f](https://github.com/meysam81/prometheus-command-timer/commit/901ca8fc241e22dd19ec85fc6198a033dfbdc556))
+
 ## 1.0.0 (2025-02-25)
 
 
