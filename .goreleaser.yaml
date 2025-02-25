@@ -39,9 +39,7 @@ changelog:
 
 binary_signs:
   - cmd: cosign
-    args:
-      - "sign-blob"
-      - "--output-signature=${signature}"
-      - "${artifact}"
-      - "--yes"
     certificate: '{{ trimsuffix .Env.artifact ".tar.gz" }}.pem'
+
+checksum:
+  name_template: checksums.txt
