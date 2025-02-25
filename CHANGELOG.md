@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.6...v1.0.7) (2025-02-25)
+
+
+### Bug Fixes
+
+* **CI:** remove checksum artifact ([3b40932](https://github.com/meysam81/prometheus-command-timer/commit/3b4093227b55a9771be65d5c408beabb9a40ca8c))
+
 ## [1.0.6](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.5...v1.0.6) (2025-02-25)
 
 
