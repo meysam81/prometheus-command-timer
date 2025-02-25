@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.1...v1.0.2) (2025-02-25)
+
+
+### Miscellaneous Chores
+
+* customize signature and output certificate ([75f3458](https://github.com/meysam81/prometheus-command-timer/commit/75f3458ba8c04645fc7854fe0bd88ba1dac60e73))
+* remove cosign args from goreleaser ([29d6fd1](https://github.com/meysam81/prometheus-command-timer/commit/29d6fd1b480bec0e2bffbffe9277ad5f84b7fe90))
+
 ## [1.0.1](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.0...v1.0.1) (2025-02-25)
 
 
