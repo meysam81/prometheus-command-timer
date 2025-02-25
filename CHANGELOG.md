@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.3...v1.0.4) (2025-02-25)
+
+
+### Features
+
+* add -version flag ([c7a0999](https://github.com/meysam81/prometheus-command-timer/commit/c7a0999c916039c67ca87806a6374ca2d590edbc))
+
 ## [1.0.3](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.2...v1.0.3) (2025-02-25)
 
 
