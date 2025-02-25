@@ -9,6 +9,11 @@ LABELS=""
 DEBUG=false
 INFO=true
 
+curl_cmd="curl"
+if [ -x "${PWD}/curl" ]; then
+    curl_cmd="${PWD}/curl"
+fi
+
 log_stdout() {
     if [ "$INFO" = "true" ]; then
         echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*"
@@ -144,7 +149,7 @@ send_metric() {
         echo "# TYPE ${metric_name} ${metric_type}"
         echo "# HELP ${metric_name} ${help_text}"
         echo "${metric_name} ${value}"
-        ) | curl --silent --show-error --fail --data-binary @- "$endpoint" || {
+        ) | "$curl_cmd" --silent --show-error --fail --data-binary @- "$endpoint" || {
         echo "Error: Failed to send metrics to Pushgateway" >&2
         return 1
     }
