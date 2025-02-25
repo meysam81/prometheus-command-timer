@@ -1,9 +1,9 @@
 FROM busybox:1
 
 ARG VERSION=latest
-ENV VERSION=${VERSION}
+ENV DEFAULT_VERSION=$VERSION
 
 COPY install.sh /
 
 ENTRYPOINT ["/install.sh"]
-CMD ["--directory", "/", "--version", "${VERSION}"]
+CMD ["--directory", "/"]

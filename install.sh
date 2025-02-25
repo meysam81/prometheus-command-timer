@@ -2,7 +2,7 @@
 
 set -eu
 
-DEFAULT_VERSION="latest"
+DEFAULT_VERSION="${DEFAULT_VERSION:-latest}"
 DEFAULT_DIRECTORY="."
 
 usage() {

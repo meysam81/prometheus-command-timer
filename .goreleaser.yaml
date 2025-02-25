@@ -45,6 +45,9 @@ binary_signs:
       - --output-certificate=${certificate}
       - ${artifact}
       - --yes
+    certificate: "${artifact}.pem"
+    artifacts: checksum
+    output: true
 
 checksum:
   name_template: checksums.txt
