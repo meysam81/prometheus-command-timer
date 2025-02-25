@@ -2,13 +2,29 @@
 
 set -eu
 
-parent_dir="$(dirname "${INSTALL_PATH}")"
-mkdir -p "$parent_dir"
+ARCH=$(uname -m)
+case $ARCH in
+    aarch64)
+        CURL_URL="https://github.com/moparisthebest/static-curl/releases/download/v8.11.0/curl-aarch64"
+    ;;
+    x86_64)
+        CURL_URL="https://github.com/moparisthebest/static-curl/releases/download/v8.11.0/curl-amd64"
+    ;;
+    *)
+        echo "Unsupported arch: $ARCH"
+        exit 1
+    ;;
+esac
 
-wget "${URL}" -qO "${INSTALL_PATH}"
+mkdir -p "$INSTALL_DIR"
 
-chmod +x "${INSTALL_PATH}"
+filename="${INSTALL_DIR}/prometheus-command-timer"
+wget "${URL}" -qO "$filename"
+chmod +x "$filename"
+echo "Installed to $filename"
 
-echo "Installed to ${INSTALL_PATH}"
+wget "$CURL_URL" -qO "${INSTALL_DIR}/curl"
+chmod +x "${INSTALL_DIR}/curl"
 
-"${INSTALL_PATH}" --help
+"$filename" --help
+"${INSTALL_DIR}/curl" --version
