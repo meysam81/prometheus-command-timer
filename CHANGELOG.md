@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.3](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.2...v1.0.3) (2025-02-25)
+
+
+### Bug Fixes
+
+* **CI:** remove redundant dashes from args ([ccb4e8a](https://github.com/meysam81/prometheus-command-timer/commit/ccb4e8a8ca95e334d97e731897b97fea1f407c3c))
+
+
+### Miscellaneous Chores
+
+* lowercase the OS in release assets ([e35519b](https://github.com/meysam81/prometheus-command-timer/commit/e35519b342cf9964ffaece25034049332b501d39))
+
 ## [1.0.2](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.1...v1.0.2) (2025-02-25)
 
 
