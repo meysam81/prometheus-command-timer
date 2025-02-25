@@ -30,10 +30,10 @@ jobs:
       - name: Build docker
         uses: meysam81/build-docker@main
         with:
-          image-name: ghcr.io/meysam81/atlantis
+          image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
           image-extra-tags: |
-            ghcr.io/meysam81/atlantis:${{ github.run_id }}
-            ghcr.io/meysam81/atlantis:latest
+            ghcr.io/meysam81/${{ github.event.repository.name }}:${{ github.run_id }}
+            ghcr.io/meysam81/${{ github.event.repository.name }}:latest
           kubescape: true
           kubescape-upload-sarif: true
 
@@ -44,7 +44,7 @@ jobs:
       - name: Build docker
         uses: meysam81/build-docker@main
         with:
-          image-name: ghcr.io/meysam81/atlantis
+          image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
           kubescape: true
           scout-comment-pr: true
           scout-compare: true
@@ -74,5 +74,5 @@ jobs:
       - name: Build docker
         uses: meysam81/build-docker@main
         with:
-          image-name: ghcr.io/meysam81/atlantis
-          image-extra-tags: ghcr.io/meysam81/atlantis:${{ needs.release-please.outputs.tag_name }}
+          image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
+          image-extra-tags: ghcr.io/meysam81/${{ github.event.repository.name }}:${{ needs.release-please.outputs.tag_name }}
