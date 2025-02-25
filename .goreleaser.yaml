@@ -46,7 +46,6 @@ binary_signs:
       - ${artifact}
       - --yes
     certificate: "${artifact}.pem"
-    artifacts: checksum
     output: true
 
 checksum:
