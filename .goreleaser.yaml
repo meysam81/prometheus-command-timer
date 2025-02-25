@@ -42,7 +42,7 @@ binary_signs:
     args:
       - sign-blob
       - --output-signature=${signature}
-      - ----output-certificate=${certificate}
+      - --output-certificate=${certificate}
       - ${artifact}
       - --yes
     certificate: '{{ trimsuffix .Env.artifact ".tar.gz" }}.pem'
