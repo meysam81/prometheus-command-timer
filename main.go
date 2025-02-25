@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"runtime/debug"
 	"strings"
 	"syscall"
 	"time"
@@ -17,6 +18,7 @@ type Config struct {
 	InstanceName   string
 	Labels         string
 	Debug          bool
+	Version        bool
 	Info           bool
 }
 
@@ -31,6 +33,7 @@ func main() {
 	flag.StringVar(&config.InstanceName, "instance-name", config.InstanceName, "Instance name for metrics")
 	flag.StringVar(&config.Labels, "labels", "", "Additional labels in key=value format, comma-separated (e.g., env=prod,team=infra)")
 	flag.BoolVar(&config.Debug, "debug", false, "Enable debug mode")
+	flag.BoolVar(&config.Version, "version", false, "Output version")
 	showHelp := flag.Bool("help", false, "Show help message")
 	flag.BoolVar(showHelp, "h", false, "Show help message (shorthand)")
 
@@ -71,6 +74,13 @@ func main() {
 
 	if *showHelp {
 		flag.Usage()
+		os.Exit(0)
+	}
+
+	if config.Version {
+		buildInfo, _ := debug.ReadBuildInfo()
+		fmt.Println("Version:", buildInfo.Main.Version)
+		fmt.Println("Go Version:", buildInfo.GoVersion)
 		os.Exit(0)
 	}
 
