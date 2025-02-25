@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.5](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.4...v1.0.5) (2025-02-25)
+
+
+### Bug Fixes
+
+* **CI:** remove duplicate certificate name ([a9d57b1](https://github.com/meysam81/prometheus-command-timer/commit/a9d57b134afd00144959297212817a322d57d847))
+
+
+### Miscellaneous Chores
+
+* install version from the release ([2c250ca](https://github.com/meysam81/prometheus-command-timer/commit/2c250ca3d1192197a37347cb00b30c5eac63aff4))
+
 ## [1.0.4](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.3...v1.0.4) (2025-02-25)
 
 
