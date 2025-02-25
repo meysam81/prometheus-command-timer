@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.5...v1.0.6) (2025-02-25)
+
+
+### Miscellaneous Chores
+
+* release 1.0.6 ([4a59665](https://github.com/meysam81/prometheus-command-timer/commit/4a59665eeea19c9d99cfc90b8ce40469b74761be))
+
 ## [1.0.5](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.4...v1.0.5) (2025-02-25)
 
 
