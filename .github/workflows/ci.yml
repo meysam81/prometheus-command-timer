@@ -74,6 +74,8 @@ jobs:
       - name: Build docker
         uses: meysam81/build-docker@main
         with:
+          build-args: |
+            VERSION=${{ needs.release-please.outputs.tag_name }}
           image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
           image-extra-tags: ghcr.io/meysam81/${{ github.event.repository.name }}:${{ needs.release-please.outputs.tag_name }}
 
