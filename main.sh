@@ -7,6 +7,13 @@ JOB_NAME=""
 INSTANCE_NAME="$(hostname)"
 LABELS=""
 DEBUG=false
+INFO=true
+
+log_stdout() {
+    if [ "$INFO" = "true" ]; then
+        echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*"
+    fi
+}
 
 usage() {
     cat <<EOF
@@ -93,6 +100,11 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
+log_stdout "Pushgateway URL: $PUSHGATEWAY_URL"
+log_stdout "Job name: $JOB_NAME"
+log_stdout "Instance name: $INSTANCE_NAME"
+log_stdout "Labels: $LABELS"
+
 build_pushgateway_url() {
     url="${PUSHGATEWAY_URL}/metrics/job/${JOB_NAME}/instance/${INSTANCE_NAME}"
     if [ -n "$LABELS" ]; then
@@ -126,11 +138,13 @@ send_metric() {
     help_text="$4"
     endpoint=$(build_pushgateway_url)
 
+    log_stdout "Sending metric: ${metric_name}=${value} (${metric_type})"
+
     (
-        echo "# TYPE ${JOB_NAME}_${metric_name} ${metric_type}"
-        echo "# HELP ${JOB_NAME}_${metric_name} ${help_text}"
-        echo "${JOB_NAME}_${metric_name} ${value}"
-    ) | curl --silent --show-error --fail --data-binary @- "$endpoint" || {
+        echo "# TYPE ${metric_name} ${metric_type}"
+        echo "# HELP ${metric_name} ${help_text}"
+        echo "${metric_name} ${value}"
+        ) | curl --silent --show-error --fail --data-binary @- "$endpoint" || {
         echo "Error: Failed to send metrics to Pushgateway" >&2
         return 1
     }
