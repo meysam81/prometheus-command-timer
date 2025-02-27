@@ -45,7 +45,8 @@ binary_signs:
       - --output-certificate=${certificate}
       - ${artifact}
       - --yes
-    certificate: "${artifact}.pem"
+    certificate: '${artifact}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}.pem'
+    signature: '${artifact}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}.sig'
     output: true
 
 checksum:

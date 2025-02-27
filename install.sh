@@ -129,4 +129,4 @@ rm "$ASSET_NAME"
 
 "$DIRECTORY/prometheus-command-timer" -version
 
-echo "Installation complete! Binary is available in $DIRECTORY"
+echo "Installation complete! Executable binary is available in $DIRECTORY/prometheus-command-timer"
