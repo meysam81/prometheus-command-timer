@@ -114,7 +114,7 @@ spec:
             - /shared
           image: ghcr.io/meysam81/prometheus-command-timer
           name: install-prometheus-command-timer
-          volumeMounts:(
+          volumeMounts:
             - mountPath: /shared
               name: shared
       restartPolicy: OnFailure
