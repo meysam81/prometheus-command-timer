@@ -66,19 +66,6 @@ jobs:
         with:
           release-type: simple
 
-  build-stable:
-    needs: release-please
-    if: needs.release-please.outputs.releases_created == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Build docker
-        uses: meysam81/build-docker@main
-        with:
-          build-args: |
-            VERSION=${{ needs.release-please.outputs.tag_name }}
-          image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
-          image-extra-tags: ghcr.io/meysam81/${{ github.event.repository.name }}:${{ needs.release-please.outputs.tag_name }}
-
   goreleaser:
     needs: release-please
     if: needs.release-please.outputs.releases_created == 'true'
@@ -102,3 +89,18 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-stable:
+    needs:
+      - release-please
+      - goreleaser
+    if: needs.release-please.outputs.releases_created == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build docker
+        uses: meysam81/build-docker@main
+        with:
+          build-args: |
+            VERSION=${{ needs.release-please.outputs.tag_name }}
+          image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
+          image-extra-tags: ghcr.io/meysam81/${{ github.event.repository.name }}:${{ needs.release-please.outputs.tag_name }}
