@@ -125,6 +125,18 @@ spec:
             - /shared
           image: ghcr.io/meysam81/prometheus-command-timer
           name: install-prometheus-command-timer
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsGroup: 65534
+            runAsNonRoot: true
+            runAsUser: 65534
+          volumeMounts:
+            - mountPath: /shared
+              name: shared
           volumeMounts:
             - mountPath: /shared
               name: shared
