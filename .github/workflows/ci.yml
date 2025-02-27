@@ -104,3 +104,7 @@ jobs:
             VERSION=${{ needs.release-please.outputs.tag_name }}
           image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
           image-extra-tags: ghcr.io/meysam81/${{ github.event.repository.name }}:${{ needs.release-please.outputs.tag_name }}
+          metadata-tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
