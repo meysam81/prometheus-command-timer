@@ -108,21 +108,20 @@ spec:
             - |
               sleep 10
           command:
-            - /shared/prometheus-command-timer
-            - "--pushgateway-url"
-            - http://pushgateway.monitoring.svc.cluster.local:9091
-            - "--job-name"
-            - sleep
+            - prometheus-command-timer
+            - --pushgateway-url=http://pushgateway.monitoring.svc.cluster.local:9091
+            - --job-name=sleep
             - "--"
           image: busybox:1
           name: sleep
           volumeMounts:
-            - mountPath: /shared
-              name: shared
+            - mountPath: /usr/local/bin/prometheus-command-timer
+              name: tmp
+              subPath: prometheus-command-timer
       initContainers:
         - args:
             - -d
-            - /shared
+            - /tmp
           image: ghcr.io/meysam81/prometheus-command-timer
           name: install-prometheus-command-timer
           securityContext:
@@ -135,12 +134,12 @@ spec:
             runAsNonRoot: true
             runAsUser: 65534
           volumeMounts:
-            - mountPath: /shared
-              name: shared
+            - mountPath: /tmp
+              name: tmp
       restartPolicy: OnFailure
       volumes:
         - emptyDir: {}
-          name: shared
+          name: tmp
 ```
 
 ## Usage
