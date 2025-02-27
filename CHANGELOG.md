@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.7...v1.0.8) (2025-02-27)
+
+
+### Bug Fixes
+
+* **CI:** template the certificate and signature for cosign ([85c8291](https://github.com/meysam81/prometheus-command-timer/commit/85c82915cf093045e2fbd04663018c803663e218))
+
 ## [1.0.7](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.6...v1.0.7) (2025-02-25)
 
 
