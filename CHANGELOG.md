@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.9](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.8...v1.0.9) (2025-02-27)
+
+
+### Miscellaneous Chores
+
+* **CI:** build major version docker images ([0d04363](https://github.com/meysam81/prometheus-command-timer/commit/0d04363346a46bb5749098a187cfff530b8968d6))
+
 ## [1.0.8](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.7...v1.0.8) (2025-02-27)
 
 
