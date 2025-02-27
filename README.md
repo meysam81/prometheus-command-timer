@@ -137,9 +137,6 @@ spec:
           volumeMounts:
             - mountPath: /shared
               name: shared
-          volumeMounts:
-            - mountPath: /shared
-              name: shared
       restartPolicy: OnFailure
       volumes:
         - emptyDir: {}
