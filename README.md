@@ -1,5 +1,16 @@
 # Prometheus Command Timer
 
+[![GitHub Tag](https://img.shields.io/github/v/tag/meysam81/prometheus-command-timer)](https://github.com/meysam81/prometheus-command-timer)
+[![Stars](https://img.shields.io/github/stars/meysam81/prometheus-command-timer?label=GitHub%20stars&style=flat)](https://github.com/meysam81/prometheus-command-timer/stargazers)
+[![GitHub top language](https://img.shields.io/github/languages/top/meysam81/prometheus-command-timer)](https://github.com/meysam81/prometheus-command-timer)
+[![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/meysam81/prometheus-command-timer)](https://github.com/meysam81/prometheus-command-timer)
+[![Open Issues](https://img.shields.io/github/issues-raw/meysam81/prometheus-command-timer)](https://github.com/meysam81/prometheus-command-timer/issues)
+[![Open PRs](https://img.shields.io/github/issues-pr-raw/meysam81/prometheus-command-timer)](https://github.com/meysam81/prometheus-command-timer/pulls)
+[![Contributors](https://img.shields.io/github/contributors/meysam81/prometheus-command-timer)](https://github.com/meysam81/prometheus-command-timer/graphs/contributors)
+[![Repo Size](https://img.shields.io/github/repo-size/meysam81/prometheus-command-timer)](https://github.com/meysam81/prometheus-command-timer/)
+[![Code Size](https://img.shields.io/github/languages/code-size/meysam81/prometheus-command-timer)](https://github.com/meysam81/prometheus-command-timer/)
+[![License](https://img.shields.io/github/license/meysam81/prometheus-command-timer)](./LICENSE)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
