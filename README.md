@@ -139,8 +139,6 @@ Options:
         Instance name for metrics (default: hostname)
   -labels string
         Additional labels in key=value format, comma-separated (e.g., env=prod,team=infra)
-  -debug
-        Enable debug mode
   -version
         Output version
   -help, -h
