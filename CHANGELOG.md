@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.10](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.9...v1.0.10) (2025-02-27)
+
+
+### Bug Fixes
+
+* **docs:** syntax error ([c8ee7a5](https://github.com/meysam81/prometheus-command-timer/commit/c8ee7a5ca910571bda5af4fee61811f2675ae6ad))
+
+
+### Miscellaneous Chores
+
+* **CI:** manually extract major version from semver ([52e884d](https://github.com/meysam81/prometheus-command-timer/commit/52e884dbde8c28f048f28516ccfd27aacf42f04f))
+
 ## [1.0.9](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.8...v1.0.9) (2025-02-27)
 
 
