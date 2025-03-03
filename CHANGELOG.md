@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.13](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.12...v1.0.13) (2025-03-03)
+
+
+### Bug Fixes
+
+* **CI:** rename downloadable asset name in docker image ([a044d44](https://github.com/meysam81/prometheus-command-timer/commit/a044d444903be227c0c77f00dc2641dc5100a55a))
+
 ## [1.0.12](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.11...v1.0.12) (2025-03-03)
 
 
