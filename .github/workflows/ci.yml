@@ -113,3 +113,4 @@ jobs:
             ghcr.io/meysam81/${{ github.event.repository.name }}:${{ needs.release-please.outputs.tag_name }}
             ghcr.io/meysam81/${{ github.event.repository.name }}:${{ steps.semver.outputs.major }}
             ghcr.io/meysam81/${{ github.event.repository.name }}:stable
+          ref: ${{ needs.release-please.outputs.tag_name }}
