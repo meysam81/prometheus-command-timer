@@ -127,10 +127,10 @@ func executeCommand(config *Config, cmdArgs []string) int {
 		}
 	}
 
+	duration := time.Since(time.Unix(startTime, 0)).Seconds()
 	endTime := time.Now().Unix()
-	duration := endTime - startTime
 
-	sendMetric(config, "job_duration_seconds", fmt.Sprintf("%d", duration), "gauge", "Total time taken for job execution in seconds")
+	sendMetric(config, "job_duration_seconds", fmt.Sprintf("%.6f", duration), "gauge", "Total time taken for job execution in seconds")
 	sendMetric(config, "job_exit_status", fmt.Sprintf("%d", exitStatus), "gauge", "Exit status code of the last job execution (0=success)")
 	sendMetric(config, "job_last_execution_timestamp", fmt.Sprintf("%d", endTime), "gauge", "Timestamp of the last job execution")
 	sendMetric(config, "job_executions_total", "1", "counter", "Total number of job executions")
