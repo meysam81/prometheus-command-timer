@@ -48,10 +48,10 @@ ARCH=$(uname -m)
 
 case $ARCH in
     x86_64)
-        ARCH="x86_64"
+        ARCH="amd64"
     ;;
     amd64)
-        ARCH="x86_64"
+        ARCH="amd64"
     ;;
     arm64)
         ARCH="arm64"
