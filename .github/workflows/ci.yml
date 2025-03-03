@@ -98,11 +98,6 @@ jobs:
     if: needs.release-please.outputs.releases_created == 'true'
     runs-on: ubuntu-latest
     steps:
-      - name: Extract semver major version
-        id: semver
-        run: |
-          major=$(echo "${{ needs.release-please.outputs.tag_name }}" | cut -d. -f1)
-          echo "major=${major}" >> "$GITHUB_OUTPUT"
       - name: Build docker
         uses: meysam81/build-docker@main
         with:
@@ -111,6 +106,9 @@ jobs:
           image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
           image-extra-tags: |
             ghcr.io/meysam81/${{ github.event.repository.name }}:${{ needs.release-please.outputs.tag_name }}
-            ghcr.io/meysam81/${{ github.event.repository.name }}:${{ steps.semver.outputs.major }}
             ghcr.io/meysam81/${{ github.event.repository.name }}:stable
+          metadata-tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
           ref: ${{ needs.release-please.outputs.tag_name }}

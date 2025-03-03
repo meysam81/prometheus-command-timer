@@ -88,7 +88,7 @@ case $OS in
     ;;
 esac
 
-ASSET_NAME="prometheus-command-timer_${OS}_${ARCH}.${FILE_EXT}"
+ASSET_NAME="prometheus-command-timer-${OS}-${ARCH}.${FILE_EXT}"
 
 
 if [ "$VERSION" = "latest" ]; then
