@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.13...v1.1.0) (2025-03-03)
+
+
+### Features
+
+* add more precision to duration metric ([1499576](https://github.com/meysam81/prometheus-command-timer/commit/1499576ceb2bda23c0a5b94cb80d973bd6abc929))
+
 ## [1.0.13](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.12...v1.0.13) (2025-03-03)
 
 
