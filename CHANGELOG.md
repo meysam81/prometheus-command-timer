@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.12](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.11...v1.0.12) (2025-03-03)
+
+
+### Miscellaneous Chores
+
+* **CI:** use amd64 as arch in release assets ([86fab42](https://github.com/meysam81/prometheus-command-timer/commit/86fab42f10303e5ae95c509061a165a3ff410d6f))
+
 ## [1.0.11](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.10...v1.0.11) (2025-03-03)
 
 
