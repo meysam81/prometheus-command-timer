@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.11](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.10...v1.0.11) (2025-03-03)
+
+
+### Miscellaneous Chores
+
+* **CI:** checkout the ref explicilty when building stable docker ([9d5d803](https://github.com/meysam81/prometheus-command-timer/commit/9d5d803a3f52fe8a562de207afd09086f4ea3f49))
+* **CI:** create build assets with dash instead ([a66663c](https://github.com/meysam81/prometheus-command-timer/commit/a66663cd2a2c5c96e427373b347048fd5727385e))
+
 ## [1.0.10](https://github.com/meysam81/prometheus-command-timer/compare/v1.0.9...v1.0.10) (2025-02-27)
 
 
