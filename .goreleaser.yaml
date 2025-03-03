@@ -19,8 +19,8 @@ archives:
   - formats:
       - tar.gz
     name_template: >-
-      {{ .ProjectName }}_
-      {{- tolower .Os }}_
+      {{ .ProjectName }}-
+      {{- tolower .Os }}-
       {{- if eq .Arch "amd64" }}x86_64
       {{- else if eq .Arch "386" }}i386
       {{- else }}{{ .Arch }}{{ end }}
@@ -45,8 +45,8 @@ binary_signs:
       - --output-certificate=${certificate}
       - ${artifact}
       - --yes
-    certificate: '${artifact}_{{- tolower .Os }}_{{- if eq .Arch "amd64" }}x86_64{{- else if eq .Arch "386" }}i386{{- else }}{{ .Arch }}{{ end }}{{- if .Arm }}v{{ .Arm }}{{ end }}.pem'
-    signature: '${artifact}_{{- tolower .Os }}_{{- if eq .Arch "amd64" }}x86_64{{- else if eq .Arch "386" }}i386{{- else }}{{ .Arch }}{{ end }}{{- if .Arm }}v{{ .Arm }}{{ end }}.sig'
+    certificate: '${artifact}-{{- tolower .Os }}-{{- if eq .Arch "amd64" }}x86_64{{- else if eq .Arch "386" }}i386{{- else }}{{ .Arch }}{{ end }}{{- if .Arm }}v{{ .Arm }}{{ end }}.pem'
+    signature: '${artifact}-{{- tolower .Os }}-{{- if eq .Arch "amd64" }}x86_64{{- else if eq .Arch "386" }}i386{{- else }}{{ .Arch }}{{ end }}{{- if .Arm }}v{{ .Arm }}{{ end }}.sig'
     output: true
 
 checksum:
