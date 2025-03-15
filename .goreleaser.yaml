@@ -50,3 +50,9 @@ binary_signs:
 
 checksum:
   name_template: checksums.txt
+
+sboms:
+  - id: archive
+    artifacts: archive
+  - id: source
+    artifacts: source
