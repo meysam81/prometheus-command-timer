@@ -1,5 +1,6 @@
 # Prometheus Command Timer
 
+[![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://developer.mend.io/github/meysam81/prometheus-command-timer)
 [![GitHub Tag](https://img.shields.io/github/v/tag/meysam81/prometheus-command-timer)](https://github.com/meysam81/prometheus-command-timer)
 [![Stars](https://img.shields.io/github/stars/meysam81/prometheus-command-timer?label=GitHub%20stars&style=flat)](https://github.com/meysam81/prometheus-command-timer/stargazers)
 [![GitHub top language](https://img.shields.io/github/languages/top/meysam81/prometheus-command-timer)](https://github.com/meysam81/prometheus-command-timer)

@@ -1,4 +1,17 @@
 ---
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit.com hooks
+
+    [skip ci]
+  autofix_prs: true
+  autoupdate_commit_msg: |
+    [pre-commit.ci] pre-commit autoupdate
+
+    [skip ci]
+  autoupdate_schedule: weekly
+  submodules: false
+
 repos:
   - hooks:
       - args: ["--maxkb=800"]

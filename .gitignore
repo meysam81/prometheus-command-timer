@@ -29,3 +29,4 @@ go.work
 prometheus-command-timer
 # Added by goreleaser init:
 dist/
+node_modules/
