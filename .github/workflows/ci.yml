@@ -93,6 +93,7 @@ jobs:
         name: Build docker
         uses: meysam81/build-docker@main
         with:
+          cosign: true
           build-args: |
             VERSION=${{ steps.semantic-release.outputs.version }}
           image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
@@ -105,3 +106,4 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
           ref: ${{ steps.semantic-release.outputs.version }}
+          kubescape: true
