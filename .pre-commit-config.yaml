@@ -67,7 +67,7 @@ repos:
         id: ruff
       - id: ruff-format
     repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.7
+    rev: v0.11.2
   - hooks:
       - id: actionlint
     repo: https://github.com/rhysd/actionlint
@@ -75,7 +75,7 @@ repos:
   - hooks:
       - id: shellcheck
     repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.26
+    rev: v0.1.28
   - hooks:
       - args: ["--maxkb=800"]
         id: check-added-large-files
@@ -100,7 +100,7 @@ repos:
         id: commitlint
         stages: [commit-msg]
     repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.21.0
+    rev: v9.22.0
   - hooks:
       - id: go-fmt
       - id: go-vet
