@@ -6,8 +6,6 @@ import (
 )
 
 func TestThatANoneExistentCounterWillBeCreatedAndIncrements(t *testing.T) {
-
-	// Create a temporary directory
 	tempDir := t.TempDir()
 	testFile := filepath.Join(tempDir, "test.json")
 

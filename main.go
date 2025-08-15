@@ -17,14 +17,14 @@ import (
 )
 
 type Config struct {
-	PushgatewayURL         string
-	JobName                string
-	InstanceName           string
-	Labels                 string
-	ExeCountTransientStore string
-	Debug                  bool
-	Version                bool
-	Info                   bool
+	PushgatewayURL          string
+	JobName                 string
+	InstanceName            string
+	Labels                  string
+	ExecCountTransientStore string
+	Debug                   bool
+	Version                 bool
+	Info                    bool
 }
 
 func main() {
@@ -37,7 +37,7 @@ func main() {
 	flag.StringVar(&config.JobName, "job-name", "", "Job name for metrics (required)")
 	flag.StringVar(&config.InstanceName, "instance-name", config.InstanceName, "Instance name for metrics")
 	flag.StringVar(&config.Labels, "labels", "", "Additional labels in key=value format, comma-separated (e.g., env=prod,team=infra)")
-	flag.StringVar(&config.ExeCountTransientStore, "execution-count-store", filepath.Join(os.TempDir(), "prometheus-command-time.json"), "Override the default transient store filename (<tmp>/prometheus-command-time.json)")
+	flag.StringVar(&config.ExecCountTransientStore, "execution-count-store", filepath.Join(os.TempDir(), "prometheus-command-time.json"), "Override the default transient store filename (<tmp>/prometheus-command-time.json)")
 	flag.BoolVar(&config.Version, "version", false, "Output version")
 	showHelp := flag.Bool("help", false, "Show help message")
 	flag.BoolVar(showHelp, "h", false, "Show help message (shorthand)")
@@ -152,7 +152,7 @@ func incrementExecutionCounter(config *Config) int {
 	if err != nil {
 		logStdout(config, "error building counter name: %v", err)
 	} else {
-		counterVal, err = counter.IncrementNamedCounter(counterName, 1, config.ExeCountTransientStore)
+		counterVal, err = counter.IncrementNamedCounter(counterName, 1, config.ExecCountTransientStore)
 		if err != nil {
 			logStdout(config, "error loading counter: %v", err)
 		}
