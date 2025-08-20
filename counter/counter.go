@@ -22,16 +22,12 @@ func IncrementNamedCounter(key string, increment int, filename string) (int, err
 	} else {
 		switch v := existingValue.(type) {
 		case float64:
-			println("float64")
 			jsonData[key] = v + float64(increment)
 		case int64:
-			println("int64")
 			jsonData[key] = v + int64(increment)
 		case int32:
-			println("int32")
 			jsonData[key] = v + int32(increment)
 		case int:
-			println("int")
 			jsonData[key] = v + increment
 		default:
 			return 0, fmt.Errorf("value for key '%s' is not a valid numeric type", key)
