@@ -4,7 +4,6 @@ package counter
 import (
 	"encoding/json"
 	"fmt"
-	_ "fmt"
 	"io/ioutil"
 	"os"
 )
