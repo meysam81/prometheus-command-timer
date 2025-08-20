@@ -6,20 +6,25 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"runtime/debug"
+	"strconv"
 	"strings"
 	"syscall"
 	"time"
+
+	"github.com/meysam81/prometheus-command-timer/counter"
 )
 
 type Config struct {
-	PushgatewayURL string
-	JobName        string
-	InstanceName   string
-	Labels         string
-	Debug          bool
-	Version        bool
-	Info           bool
+	PushgatewayURL          string
+	JobName                 string
+	InstanceName            string
+	Labels                  string
+	ExecCountTransientStore string
+	Debug                   bool
+	Version                 bool
+	Info                    bool
 }
 
 func main() {
@@ -32,6 +37,7 @@ func main() {
 	flag.StringVar(&config.JobName, "job-name", "", "Job name for metrics (required)")
 	flag.StringVar(&config.InstanceName, "instance-name", config.InstanceName, "Instance name for metrics")
 	flag.StringVar(&config.Labels, "labels", "", "Additional labels in key=value format, comma-separated (e.g., env=prod,team=infra)")
+	flag.StringVar(&config.ExecCountTransientStore, "execution-count-store", filepath.Join(os.TempDir(), "prometheus-command-time.json"), "Override the default transient store filename (<tmp>/prometheus-command-time.json)")
 	flag.BoolVar(&config.Version, "version", false, "Output version")
 	showHelp := flag.Bool("help", false, "Show help message")
 	flag.BoolVar(showHelp, "h", false, "Show help message (shorthand)")
@@ -133,9 +139,25 @@ func executeCommand(config *Config, cmdArgs []string) int {
 	sendMetric(config, "job_duration_seconds", fmt.Sprintf("%.6f", duration), "gauge", "Total time taken for job execution in seconds")
 	sendMetric(config, "job_exit_status", fmt.Sprintf("%d", exitStatus), "gauge", "Exit status code of the last job execution (0=success)")
 	sendMetric(config, "job_last_execution_timestamp", fmt.Sprintf("%d", endTime), "gauge", "Timestamp of the last job execution")
-	sendMetric(config, "job_executions_total", "1", "counter", "Total number of job executions")
+	sendMetric(config, "job_executions_total", strconv.Itoa(incrementExecutionCounter(config)), "counter", "Total number of job executions")
 
 	return exitStatus
+}
+
+// incrementExecutionCounter will return the next value of a counter which
+// is named using the push gateway URL.
+func incrementExecutionCounter(config *Config) int {
+	counterVal := 1
+	counterName, err := buildPushgatewayURL(config)
+	if err != nil {
+		logStdout(config, "error building counter name: %v", err)
+	} else {
+		counterVal, err = counter.IncrementNamedCounter(counterName, 1, config.ExecCountTransientStore)
+		if err != nil {
+			logStdout(config, "error loading counter: %v", err)
+		}
+	}
+	return counterVal
 }
 
 func buildPushgatewayURL(config *Config) (string, error) {
