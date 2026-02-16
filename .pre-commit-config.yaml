@@ -59,7 +59,7 @@ repos:
           - "--autofix"
         id: pretty-format-json
     repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
   - hooks:
       - args:
           - "--fix"
@@ -67,15 +67,15 @@ repos:
         id: ruff
       - id: ruff-format
     repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.7
+    rev: v0.15.1
   - hooks:
       - id: actionlint
     repo: https://github.com/rhysd/actionlint
-    rev: v1.7.7
+    rev: v1.7.11
   - hooks:
       - id: shellcheck
     repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.26
+    rev: v0.1.30
   - hooks:
       - args: ["--maxkb=800"]
         id: check-added-large-files
@@ -94,13 +94,13 @@ repos:
           - "--allow-missing-credentials"
         id: detect-aws-credentials
     repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
   - hooks:
       - additional_dependencies: ["@commitlint/config-conventional"]
         id: commitlint
         stages: [commit-msg]
     repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.21.0
+    rev: v9.24.0
   - hooks:
       - id: go-fmt
       - id: go-vet
@@ -116,6 +116,6 @@ repos:
     repo: https://github.com/dnephin/pre-commit-golang
     rev: v0.5.1
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.7
+    rev: v1.7.11
     hooks:
       - id: actionlint
