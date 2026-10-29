@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build docker
-        uses: meysam81/build-docker@main
+        uses: meysam81/build-docker@4702dd58cc9a0c0499fbdfe1e1bf8c23d4bc7c8c # main
         with:
           image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
           image-extra-tags: |
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build docker
-        uses: meysam81/build-docker@main
+        uses: meysam81/build-docker@4702dd58cc9a0c0499fbdfe1e1bf8c23d4bc7c8c # main
         with:
           image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
           kubescape: true
@@ -47,7 +47,7 @@ jobs:
           scout-compare: true
           scout-cves: true
 
-  semantic-release:
+  release-please:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
@@ -57,53 +57,56 @@ jobs:
       pull-requests: write
       id-token: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - id: release-please
+        name: Release please
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+      - if: steps.release-please.outputs.releases_created == 'true'
+        name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           fetch-depth: 0
-          ssh-key: ${{ secrets.GH_DEPLOY_KEY }}
-      - name: Setup bun
-        uses: oven-sh/setup-bun@v2
+          ref: ${{ steps.release-please.outputs.tag_name }}
+      - if: steps.release-please.outputs.releases_created == 'true'
+        name: Install syft
+        uses: anchore/sbom-action/download-syft@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
+      - if: steps.release-please.outputs.releases_created == 'true'
+        name: Setup Cosign CLI
+        uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # v3.9.1
+      # release-please already created the release with its notes; goreleaser's
+      # default release mode (keep-existing) only uploads the artifacts to it.
+      - if: steps.release-please.outputs.releases_created == 'true'
+        name: Goreleaser
+        uses: goreleaser/goreleaser-action@f06c13b6b1a9625abc9e6e439d9c05a8f2190e94 # v7.2.3
         with:
-          bun-version: latest
-      - name: Install bun deps
-        run: bun install
-      - name: Install syft
-        uses: anchore/sbom-action/download-syft@v0
-      - name: Setup Cosign CLI
-        uses: sigstore/cosign-installer@v3
-      - name: Install goreleaser
-        run: |
-          echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
-          sudo apt update
-          sudo apt install -y goreleaser
-          goreleaser --version
-      - id: semantic-release
-        name: Release
+          distribution: goreleaser
+          version: "~> v2"
+          args: release --clean
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: bunx semantic-release@v24
-      - if: steps.semantic-release.outputs.version != ''
+      - if: steps.release-please.outputs.releases_created == 'true'
         name: Extract semver major version
         id: semver
         run: |
-          major=$(echo "${{ steps.semantic-release.outputs.version }}" | cut -d. -f1)
+          major=$(echo "${{ steps.release-please.outputs.tag_name }}" | cut -d. -f1)
           echo "major=${major}" >> "$GITHUB_OUTPUT"
-      - if: steps.semantic-release.outputs.version != ''
+      - if: steps.release-please.outputs.releases_created == 'true'
         name: Build docker
-        uses: meysam81/build-docker@main
+        uses: meysam81/build-docker@4702dd58cc9a0c0499fbdfe1e1bf8c23d4bc7c8c # main
         with:
           cosign: true
           build-args: |
-            VERSION=${{ steps.semantic-release.outputs.version }}
+            VERSION=${{ steps.release-please.outputs.tag_name }}
           image-name: ghcr.io/meysam81/${{ github.event.repository.name }}
           image-extra-tags: |
-            ghcr.io/meysam81/${{ github.event.repository.name }}:${{ steps.semantic-release.outputs.version }}
+            ghcr.io/meysam81/${{ github.event.repository.name }}:${{ steps.release-please.outputs.tag_name }}
             ghcr.io/meysam81/${{ github.event.repository.name }}:${{ steps.semver.outputs.major }}
             ghcr.io/meysam81/${{ github.event.repository.name }}:stable
           metadata-tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-          ref: ${{ steps.semantic-release.outputs.version }}
+          ref: ${{ steps.release-please.outputs.tag_name }}
           kubescape: true
