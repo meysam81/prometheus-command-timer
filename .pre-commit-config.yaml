@@ -59,7 +59,7 @@ repos:
           - "--autofix"
         id: pretty-format-json
     repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
   - hooks:
       - args:
           - "--fix"
@@ -94,7 +94,7 @@ repos:
           - "--allow-missing-credentials"
         id: detect-aws-credentials
     repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
   - hooks:
       - additional_dependencies: ["@commitlint/config-conventional"]
         id: commitlint
